@@ -1,0 +1,12 @@
+node_modules/
+# Artefactos de build (no versionar)
+dist/
+release-out/
+.DS_Store
+*.local
+# Claves privadas de firma: NUNCA subir al repositorio
+*.key
+build-log.txt
+.tauri/
+src-tauri/target/
+.cursor/

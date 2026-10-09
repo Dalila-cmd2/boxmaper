@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BoxMaper — Descargar</title>
+    <meta
+      name="description"
+      content="Descarga BoxMaper, el mapeador de instalaciones de domótica Loxone para Windows, macOS y Linux."
+    />
+    <meta property="og:title" content="BoxMaper — Descargar" />
+    <meta
+      property="og:description"
+      content="Documenta bornes, módulos y conexiones de instalaciones Loxone. Gratis, sin conexión."
+    />
+    <link rel="icon" type="image/png" href="icon.png" />
+    <style>
+      :root {
+        --bg: #020617;
+        --card: #0f172a;
+        --line: #1e293b;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --accent: #10b981;
+        --accent-hover: #34d399;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(1200px 500px at 50% -10%, #0b2a24 0%, var(--bg) 60%);
+        color: var(--text);
+        font-family: "Segoe UI", Inter, system-ui, -apple-system, Roboto, sans-serif;
+        line-height: 1.5;
+      }
+      main { max-width: 760px; margin: 0 auto; padding: 56px 20px 40px; }
+      header { text-align: center; }
+      header img { width: 96px; height: 96px; border-radius: 22px; }
+      h1 { margin: 16px 0 6px; font-size: 2.2rem; letter-spacing: 0.01em; }
+      .lead { color: var(--muted); font-size: 1.05rem; margin: 0 auto; max-width: 560px; }
+      .cta { margin: 36px 0 12px; text-align: center; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 10px;
+        background: var(--accent); color: #04130e; font-weight: 700; font-size: 1.1rem;
+        padding: 14px 28px; border-radius: 12px; text-decoration: none;
+        transition: background 0.15s, transform 0.15s;
+      }
+      .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+      .meta { color: var(--muted); font-size: 0.85rem; margin-top: 10px; min-height: 1.3em; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 40px; }
+      .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+      .card h3 { margin: 0 0 4px; font-size: 1rem; }
+      .card p { margin: 0 0 12px; color: var(--muted); font-size: 0.85rem; }
+      .card a { color: var(--accent); font-weight: 600; text-decoration: none; font-size: 0.9rem; display: block; margin-top: 4px; }
+      .card a:hover { color: var(--accent-hover); text-decoration: underline; }
+      .card .none { color: var(--muted); font-size: 0.85rem; }
+      section { margin-top: 44px; }
+      h2 { font-size: 1.25rem; margin: 0 0 12px; }
+      ol, ul { color: var(--muted); padding-left: 22px; margin: 0; }
+      li { margin: 6px 0; }
+      li strong { color: var(--text); }
+      .note { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; color: var(--muted); font-size: 0.9rem; }
+      footer { margin-top: 56px; text-align: center; color: #64748b; font-size: 0.8rem; }
+      footer a { color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="icon.png" alt="Logo de BoxMaper" />
+        <h1>BoxMaper</h1>
+        <p class="lead">
+          Mapeador de instalaciones de domótica Loxone. Documenta bornes, módulos y conexiones,
+          organiza edificios por plantas y exporta fichas a PDF, Excel y CSV. Funciona sin Internet.
+        </p>
+      </header>
+
+      <div class="cta">
+        <a id="main-download" class="btn" href="#" aria-live="polite">Descargar BoxMaper</a>
+        <div id="main-meta" class="meta">Buscando la última versión…</div>
+      </div>
+
+      <div class="grid" id="platforms">
+        <div class="card">
+          <h3>Windows 10 / 11</h3>
+          <p>Instalador .exe</p>
+          <span id="dl-windows" class="none">Cargando…</span>
+        </div>
+        <div class="card">
+          <h3>macOS</h3>
+          <p>Apple Silicon e Intel</p>
+          <span id="dl-macos" class="none">Cargando…</span>
+        </div>
+        <div class="card">
+          <h3>Linux</h3>
+          <p>AppImage o .deb</p>
+          <span id="dl-linux" class="none">Cargando…</span>
+        </div>
+      </div>
+
+      <section>
+        <h2>Cómo instalarlo en Windows</h2>
+        <ol>
+          <li><strong>Descarga</strong> el instalador con el botón verde.</li>
+          <li><strong>Ábrelo</strong> con doble clic. No hace falta ser administrador.</li>
+          <li>Si Windows muestra «Windows protegió su PC», pulsa <strong>Más información</strong> y luego <strong>Ejecutar de todas formas</strong>. Es normal en programas nuevos sin certificado de pago.</li>
+          <li>Sigue los pasos del instalador. Se crean accesos directos en el <strong>escritorio</strong> y en el <strong>menú Inicio</strong>.</li>
+          <li>Abre <strong>BoxMaper</strong> y empieza un proyecto nuevo.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Actualizaciones</h2>
+        <div class="note">
+          Cuando haya una versión nueva, BoxMaper te lo avisará al abrirlo y se actualizará con un clic.
+          También puedes buscarlas desde <strong>Ayuda → Buscar actualizaciones</strong>.
+        </div>
+      </section>
+
+      <footer>
+        <p>
+          BoxMaper es una herramienta independiente no afiliada a Loxone Electronics GmbH.<br />
+          <a id="releases-link" href="#">Ver todas las versiones</a>
+        </p>
+      </footer>
+    </main>
+
+    <script>
+      // El repositorio se deduce de la dirección (usuario.github.io/repositorio).
+      const host = location.hostname;
+      const OWNER = host.endsWith(".github.io") ? host.split(".")[0] : "Dalila-cmd2";
+      const REPO = host.endsWith(".github.io")
+        ? location.pathname.split("/").filter(Boolean)[0] || "boxmaper"
+        : "boxmaper";
+      const releasesUrl = `https://github.com/${OWNER}/${REPO}/releases/latest`;
+      document.getElementById("releases-link").href = `https://github.com/${OWNER}/${REPO}/releases`;
+      document.getElementById("main-download").href = releasesUrl;
+
+      const setLinks = (id, items) => {
+        const el = document.getElementById(id);
+        if (!items.length) { el.textContent = "Aún no disponible"; return; }
+        el.className = "";
+        el.innerHTML = "";
+        items.forEach(({ label, url }) => {
+          const a = document.createElement("a");
+          a.href = url;
+          a.textContent = label;
+          el.appendChild(a);
+        });
+      };
+
+      const detectOS = () => {
+        const ua = navigator.userAgent;
+        if (/Windows/i.test(ua)) return "windows";
+        if (/Mac/i.test(ua)) return "macos";
+        if (/Linux|X11/i.test(ua)) return "linux";
+        return "windows";
+      };
+
+      fetch(`https://api.github.com/repos/${OWNER}/${REPO}/releases/latest`)
+        .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then((rel) => {
+          const assets = (rel.assets || []).map((a) => ({ name: a.name, url: a.browser_download_url }));
+          const find = (re) => assets.filter((a) => re.test(a.name) && !/\.sig$/i.test(a.name));
+
+          const win = find(/(-setup\.exe)$/i).map((a) => ({ label: "Descargar instalador (.exe)", url: a.url }));
+          const mac = find(/\.dmg$/i).map((a) => ({
+            label: /aarch64|arm64/i.test(a.name) ? "Apple Silicon (M1/M2/M3/M4)" : "Mac con Intel",
+            url: a.url,
+          }));
+          const lin = [
+            ...find(/\.AppImage$/i).map((a) => ({ label: "Descargar .AppImage", url: a.url })),
+            ...find(/\.deb$/i).map((a) => ({ label: "Descargar .deb (Debian/Ubuntu)", url: a.url })),
+          ];
+          setLinks("dl-windows", win);
+          setLinks("dl-macos", mac);
+          setLinks("dl-linux", lin);
+
+          const byOS = { windows: win, macos: mac, linux: lin };
+          const os = detectOS();
+          const names = { windows: "Windows", macos: "macOS", linux: "Linux" };
+          const pick = byOS[os][0];
+          const btn = document.getElementById("main-download");
+          if (pick) {
+            btn.href = pick.url;
+            btn.textContent = `Descargar para ${names[os]}`;
+          }
+          document.getElementById("main-meta").textContent =
+            `Versión ${rel.tag_name}` +
+            (rel.published_at ? ` · ${new Date(rel.published_at).toLocaleDateString("es-ES")}` : "");
+        })
+        .catch(() => {
+          document.getElementById("main-meta").textContent =
+            "No se pudo leer la última versión. Usa el botón para ir a la página de descargas.";
+          ["dl-windows", "dl-macos", "dl-linux"].forEach((id) => {
+            const el = document.getElementById(id);
+            el.innerHTML = `<a href="${releasesUrl}">Ir a descargas</a>`;
+            el.className = "";
+          });
+        });
+    </script>
+  </body>
+</html>

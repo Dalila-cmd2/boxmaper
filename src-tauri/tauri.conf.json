@@ -1,0 +1,78 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "BoxMaper",
+  "version": "1.0.0",
+  "identifier": "com.loxinstal.boxmaper",
+  "mainBinaryName": "BoxMaper",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "BoxMaper",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 1024,
+        "minHeight": 640,
+        "center": true,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: asset: http://asset.localhost; font-src 'self' data:; connect-src 'self' ipc: http://ipc.localhost; worker-src 'self' blob:; object-src 'none'; base-uri 'self'",
+      "devCsp": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: ws://localhost:5173 http://localhost:5173 ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "createUpdaterArtifacts": true,
+    "publisher": "BoxMaper",
+    "copyright": "© 2026 BoxMaper. Herramienta independiente no afiliada a Loxone Electronics GmbH.",
+    "category": "Productivity",
+    "shortDescription": "Mapeador de instalaciones de domótica Loxone",
+    "longDescription": "BoxMaper documenta bornes, módulos y conexiones de instalaciones Loxone. Permite organizar edificios por plantas, ver pinouts con diagramas y exportar fichas técnicas a PDF, Excel y CSV. Funciona sin conexión.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "embedBootstrapper"
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["Spanish", "English"],
+        "displayLanguageSelector": false,
+        "startMenuFolder": "BoxMaper",
+        "installerIcon": "icons/icon.ico"
+      }
+    },
+    "linux": {
+      "deb": {
+        "section": "utils"
+      }
+    },
+    "macOS": {
+      "minimumSystemVersion": "10.15"
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEU1RDlBMDRENENDMUI5NDQKUldSRXVjRk1UYURaNWRNN1lWa3l6aVZBbVFBZlVpSllucjltaWtGaTgwQ2Zjd0tPN2RFSWUwbTEK",
+      "endpoints": [
+        "https://github.com/Dalila-cmd2/boxmaper/releases/latest/download/latest.json"
+      ]
+    }
+  }
+}
