@@ -31,7 +31,8 @@ export function compareModulesByInstallOrder(a: DeviceModule, b: DeviceModule): 
   const catB = catalogSortIndex(b.catalogId);
   if (catA !== catB) return catA - catB;
 
-  return a.alias.localeCompare(b.alias, "es", { sensitivity: "base" });
+  // numeric: «PB 2» va antes que «PB 10».
+  return a.alias.localeCompare(b.alias, "es", { sensitivity: "base", numeric: true });
 }
 
 export function modulesInInstallOrder(modules: readonly DeviceModule[]): DeviceModule[] {

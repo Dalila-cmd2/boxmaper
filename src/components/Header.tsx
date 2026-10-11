@@ -196,13 +196,26 @@ export function Header({
               type="button"
               className={menuItemClass()}
               onClick={() =>
-                exportTechnicalPdf(workspaceState).catch(() =>
+                exportTechnicalPdf(rootState).catch(() =>
                   alert("No se pudo generar la ficha técnica PDF."),
                 )
               }
             >
-              Ficha PDF
+              {onBackToBuilding ? "Ficha PDF (proyecto completo)" : "Ficha PDF"}
             </button>
+            {onBackToBuilding && rootState.activeSubProjectId ? (
+              <button
+                type="button"
+                className={menuItemClass()}
+                onClick={() =>
+                  exportTechnicalPdf(rootState, {
+                    onlySubProjectId: rootState.activeSubProjectId,
+                  }).catch(() => alert("No se pudo generar la ficha técnica PDF."))
+                }
+              >
+                Ficha PDF (solo {subProjectName || "este subproyecto"})
+              </button>
+            ) : null}
             <button
               type="button"
               disabled={exportingCsv}

@@ -40,7 +40,8 @@ export async function exportEntireBuilding(
   } else if (format === "excel") {
     await exportProjectExcel(merged);
   } else {
-    await exportTechnicalPdf(merged);
+    // La ficha PDF se organiza por subproyecto: recibe el edificio completo, no el fusionado.
+    await exportTechnicalPdf(building);
   }
   return "ok";
 }
