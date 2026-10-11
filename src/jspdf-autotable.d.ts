@@ -2,7 +2,13 @@ import { jsPDF } from "jspdf";
 
 declare module "jspdf" {
   interface jsPDF {
-    lastAutoTable: { finalY: number; pageNumber?: number };
+    /** Última tabla dibujada por jspdf-autotable (con las alturas reales de cada fila). */
+    lastAutoTable: {
+      finalY: number;
+      pageNumber?: number;
+      head: { height: number }[];
+      body: { height: number }[];
+    };
   }
 }
 
