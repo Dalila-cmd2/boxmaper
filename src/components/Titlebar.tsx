@@ -1,6 +1,7 @@
 import { CircuitBoard, Home, Minus, Square, X } from "lucide-react";
 import { isTauri } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import { SyncBadge } from "./SyncBadge";
 import { UpdateBadge } from "./UpdateBadge";
 
 interface Props {
@@ -46,7 +47,8 @@ export function Titlebar({ onHome, onBeforeClose }: Props) {
         )}
       </div>
 
-      <div data-tauri-drag-region className="flex h-full flex-1 items-center justify-center">
+      <div data-tauri-drag-region className="flex h-full flex-1 items-center justify-center gap-2">
+        <SyncBadge />
         <UpdateBadge />
       </div>
 

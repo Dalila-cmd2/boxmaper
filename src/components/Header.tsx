@@ -2,6 +2,7 @@ import {
   ArrowLeft,
   Check,
   Cpu,
+  Database,
   FileDown,
   FileSpreadsheet,
   FolderKanban,
@@ -24,6 +25,7 @@ import { downloadProjectJson } from "../utils/storage";
 import { GlobalSearch } from "./GlobalSearch";
 import { exportTechnicalPdf } from "../utils/pdfGenerator";
 import { checkForUpdates, showAbout } from "../utils/appUpdater";
+import { openSyncPanel } from "../sync/syncService";
 import { MenuDropdown, menuItemClass } from "./WorkspaceMenuBar";
 
 interface Props {
@@ -251,6 +253,10 @@ export function Header({
                 Buscar actualizaciones…
               </button>
             ) : null}
+            <button type="button" className={menuItemClass()} onClick={openSyncPanel}>
+              <Database className="h-3.5 w-3.5" />
+              Datos y sincronización…
+            </button>
             <button type="button" className={menuItemClass()} onClick={() => void showAbout()}>
               <Info className="h-3.5 w-3.5" />
               Acerca de BoxMaper

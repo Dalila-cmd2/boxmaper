@@ -10,3 +10,5 @@ build-log.txt
 .tauri/
 src-tauri/target/
 .cursor/
+# Copia local del repo de datos (tiene su propio .git en GitHub)
+data-repo/.git/

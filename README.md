@@ -11,7 +11,16 @@ Aplicación de escritorio (Tauri 2 + React + TypeScript) para documentar bornes,
    - Si Windows muestra «Windows protegió su PC», pulsa **Más información → Ejecutar de todas formas**. Aparece porque el instalador aún no está firmado con un certificado de pago.
 3. Abre **BoxMaper** y crea un proyecto nuevo.
 
-Los proyectos se guardan automáticamente en tu equipo y también puedes guardarlos como archivos `.boxmaper`. La app se actualiza sola: avisa al abrirla y también está en **Ayuda → Buscar actualizaciones**.
+Los proyectos se guardan automáticamente en tu equipo y también puedes guardarlos como archivos `.boxmaper`.
+
+### Dos tipos de actualización (sin reinstalar por cada cambio)
+
+| Qué cambia | Cómo llega a los usuarios |
+|------------|---------------------------|
+| **Contenido** (subproyectos, tablas, bornes) | Repositorio central `boxmaper-datos` en GitHub. La app lo consulta sola al abrir, cada pocos minutos y al volver a la ventana. Publicas desde **Ayuda → Datos y sincronización**. |
+| **Programa** (nuevas funciones, correcciones) | Actualizador de Tauri: al abrir la app se descarga e instala la nueva versión y reinicia. También **Ayuda → Buscar actualizaciones**. |
+
+Instalas BoxMaper **una sola vez**. Los cambios de datos no generan un instalador nuevo; solo subes la versión de datos. Los cambios de código sí publican una etiqueta `v1.x.x` en el repositorio `boxmaper`.
 
 ## Para desarrolladores
 
@@ -52,6 +61,15 @@ El instalador y la página de descarga se publican con GitHub:
 
 > **Guarda la clave privada de firma** (`boxmaper.key`) en un lugar seguro y no la subas al repositorio. Si la pierdes, las apps ya instaladas no podrán actualizarse.
 
-## Datos
+## Datos centralizados
 
-Todo se guarda en tu equipo: no hay servidor ni cuentas de usuario. Usa **Archivo → Guardar** para tener copias `.boxmaper` portables.
+Por defecto la app apunta al repositorio público **`Dalila-cmd2/boxmaper-datos`** (puedes cambiarlo en **Ayuda → Datos y sincronización**).
+
+- **Solo lectura**: cualquier instalación recibe proyectos publicados sin configurar nada (repo público).
+- **Publicar**: necesitas una clave de GitHub con permiso de escritura en ese repositorio.
+- **Historial**: cada publicación queda en el historial de Git; puedes **volver a una versión anterior** desde el mismo panel.
+- **Copias locales**: antes de aplicar cambios remotos, BoxMaper guarda copias en el equipo por si hay que deshacer.
+
+Plantilla del repositorio de datos: carpeta `data-repo/` de este proyecto. Validación: `npm run validate:data`.
+
+Copias portables: **Archivo → Guardar** (`.boxmaper`).

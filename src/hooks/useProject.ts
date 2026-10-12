@@ -24,8 +24,30 @@ import {
   migrateProjectState,
 } from "../utils/projectModel";
 import { createDebouncedSaver } from "../utils/storage";
+import { onProjectsApplied, setFlushHook } from "../sync/syncService";
 
 export type SaveStatus = "saved" | "saving";
+
+/** Tras una actualización remota, mantiene la pantalla donde estaba (subproyecto y aparato seleccionados). */
+function keepViewPosition(fresh: ProjectState, prev: ProjectState): ProjectState {
+  const stillThere = (list: { id: string }[] | undefined, id: string | null | undefined) =>
+    Boolean(id) && Boolean(list?.some((x) => x.id === id));
+  const next: ProjectState = { ...fresh };
+  if (fresh.projectKind === "building") {
+    next.activeSubProjectId = stillThere(fresh.subProjects, prev.activeSubProjectId)
+      ? prev.activeSubProjectId
+      : null;
+    next.subProjects = (fresh.subProjects ?? []).map((sp) => {
+      const before = prev.subProjects?.find((p) => p.id === sp.id);
+      return before && stillThere(sp.modules, before.selectedModuleId)
+        ? { ...sp, selectedModuleId: before.selectedModuleId }
+        : sp;
+    });
+  } else if (stillThere(fresh.modules, prev.selectedModuleId)) {
+    next.selectedModuleId = prev.selectedModuleId;
+  }
+  return next;
+}
 
 function prepareProject(data: ProjectState): ProjectState {
   const migrated = migrateProjectState(data) ?? data;
@@ -174,6 +196,27 @@ export function useProject() {
     setState(null);
     setCurrentFilePath(null);
   }, []);
+
+  // La sincronización puede actualizar en disco el proyecto que está abierto:
+  // se escribe antes lo pendiente y después se recarga sin perder la posición.
+  useEffect(() => {
+    const saver = saverRef.current;
+    setFlushHook(() => saver.flushPending());
+    const off = onProjectsApplied((ids) => {
+      setState((prev) => {
+        if (!prev?.id || !ids.includes(prev.id)) return prev;
+        const stored = loadIndexedProject(prev.id);
+        const migrated = stored ? migrateProjectState(stored) : null;
+        if (!migrated) return prev;
+        return keepViewPosition(normalizeProject(migrated), prev);
+      });
+      refreshRecents();
+    });
+    return () => {
+      off();
+      setFlushHook(undefined);
+    };
+  }, [refreshRecents]);
 
   useEffect(() => {
     const saver = saverRef.current;

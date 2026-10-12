@@ -80,6 +80,9 @@ export function WelcomeScreen({
           <p className="text-xs uppercase tracking-wide text-emerald-400/80">
             Mapeador de instalación de domótica
           </p>
+          <p className="mt-1 max-w-xs text-[11px] leading-snug text-slate-500">
+            Instalá una vez: los proyectos publicados en el repositorio central se actualizan solos en esta app.
+          </p>
         </div>
       </div>
 

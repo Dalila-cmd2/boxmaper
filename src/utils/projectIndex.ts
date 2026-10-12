@@ -132,12 +132,21 @@ export function loadIndexedProject(id: string): ProjectState | null {
   }
 }
 
-export function saveIndexedProject(state: ProjectState): ProjectState {
+/**
+ * Guarda el proyecto y actualiza el índice SIN marcarlo como proyecto activo.
+ * Lo usa la sincronización, que escribe en segundo plano.
+ */
+export function storeIndexedProject(state: ProjectState): ProjectState {
   const next = ensureProjectId(state);
   localStorage.setItem(projectBodyKey(next.id!), JSON.stringify(next));
   const entry = buildIndexEntry(next);
   const rest = listProjectIndex().filter((e) => e.id !== next.id);
   writeIndex([entry, ...rest]);
+  return next;
+}
+
+export function saveIndexedProject(state: ProjectState): ProjectState {
+  const next = storeIndexedProject(state);
   setActiveProjectId(next.id!);
   return next;
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "BoxMaper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "identifier": "com.loxinstal.boxmaper",
   "mainBinaryName": "BoxMaper",
   "build": {
@@ -26,7 +26,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: asset: http://asset.localhost; font-src 'self' data:; connect-src 'self' ipc: http://ipc.localhost; worker-src 'self' blob:; object-src 'none'; base-uri 'self'",
+      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: asset: http://asset.localhost; font-src 'self' data:; connect-src 'self' ipc: http://ipc.localhost https://api.github.com https://raw.githubusercontent.com https://github.com https://objects.githubusercontent.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'",
       "devCsp": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: ws://localhost:5173 http://localhost:5173 ipc: http://ipc.localhost"
     }
   },

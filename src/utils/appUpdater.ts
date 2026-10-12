@@ -57,7 +57,13 @@ export async function checkForUpdates(manual = false): Promise<void> {
       return;
     }
     pendingUpdate = update;
+    if (manual) {
+      setStatus({ kind: "available", version: update.version, notes: update.body ?? "" });
+      return;
+    }
+    // Al abrir la app: descarga e instala sin pedir reinstalar manualmente.
     setStatus({ kind: "available", version: update.version, notes: update.body ?? "" });
+    await installUpdate();
   } catch (error) {
     console.error("No se pudo buscar actualizaciones:", error);
     if (manual) {
