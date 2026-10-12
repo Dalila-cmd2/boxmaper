@@ -1,0 +1,26 @@
+name: Validar datos
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Dalila-cmd2/boxmaper
+          path: boxmaper
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: boxmaper/package-lock.json
+      - run: npm ci
+        working-directory: boxmaper
+      - run: npm run validate:data -- ..
+        working-directory: boxmaper
