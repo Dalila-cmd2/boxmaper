@@ -1,7 +1,7 @@
 {
   "name": "boxmaper",
   "private": true,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,8 @@
     "tauri:build": "tauri build",
     "test": "vitest run",
     "validate:data": "tsx scripts/validate-data.ts",
-    "seed:data": "tsx scripts/seed-demo-data.ts"
+    "seed:data": "tsx scripts/seed-demo-data.ts",
+    "publish:project": "tsx scripts/publish-project.ts"
   },
   "dependencies": {
     "@fontsource/inter": "^5.3.0",

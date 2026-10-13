@@ -27,7 +27,7 @@ import {
   isBuildingHub,
   toWorkspaceProjectState,
 } from "./utils/projectModel";
-import { countMappedTerminals } from "./utils/search";
+import { collectAutocompleteTerms, countMappedTerminals } from "./utils/search";
 import { adjacentTerminalId } from "./utils/terminalNavigation";
 
 export default function App() {
@@ -110,6 +110,10 @@ export default function App() {
     if (!state || !workspace) return null;
     return toWorkspaceProjectState(state, workspace);
   }, [state, workspace]);
+  const autocompleteTerms = useMemo(
+    () => (workspaceState ? collectAutocompleteTerms(workspaceState) : []),
+    [workspaceState]
+  );
 
   const modulesForList = useMemo(
     () => (workspace ? modulesInInstallOrder(workspace.modules) : []),
@@ -373,6 +377,7 @@ export default function App() {
         open={Boolean(pinoutEditingTerminal)}
         borne={pinoutEditingTerminal?.borne ?? ""}
         value={pinoutEditingTerminal?.connectedElement ?? ""}
+        suggestions={autocompleteTerms}
         onClose={closePinoutEditor}
         onSave={(connectedElement) => {
           if (!pinoutEditingTerminal) return;

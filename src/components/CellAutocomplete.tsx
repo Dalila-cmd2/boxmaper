@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { filterSuggestions } from "../utils/autocomplete";
 
 interface Props {
   value: string;
@@ -19,16 +20,7 @@ export const CellAutocomplete = forwardRef<HTMLInputElement, Props>(function Cel
   const wrapRef = useRef<HTMLDivElement>(null);
 
   const query = value;
-  const q = query.trim();
-  const minChars = showOnFocus ? 0 : 2;
-  const filteredOptions = suggestions
-    .filter((item) => {
-      if (item.toLowerCase() === q.toLowerCase()) return false;
-      if (q.length < minChars) return false;
-      if (!q) return true;
-      return item.toLowerCase().includes(q.toLowerCase());
-    })
-    .slice(0, 12);
+  const filteredOptions = filterSuggestions(suggestions, query, showOnFocus);
 
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {

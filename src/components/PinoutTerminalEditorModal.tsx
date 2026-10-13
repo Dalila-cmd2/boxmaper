@@ -1,10 +1,13 @@
 import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { CellAutocomplete } from "./CellAutocomplete";
 
 interface Props {
   open: boolean;
   borne: string;
   value: string;
+  /** Mismas sugerencias que la columna «Elemento conectado» de la tabla. */
+  suggestions: string[];
   onClose: () => void;
   /** Enter o botón Guardar: guarda y cierra. */
   onSave: (connectedElement: string) => void;
@@ -34,6 +37,7 @@ export function PinoutTerminalEditorModal({
   open,
   borne,
   value,
+  suggestions,
   onClose,
   onSave,
   onSaveAndMove,
@@ -100,11 +104,11 @@ export function PinoutTerminalEditorModal({
 
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="sr-only">Descripción del elemento conectado a {displayBorne}</span>
-          <input
+          <CellAutocomplete
             ref={inputRef}
-            type="text"
             value={draft}
-            onChange={(e) => setDraft(e.target.value)}
+            suggestions={suggestions}
+            onChange={setDraft}
             onKeyDown={(e) => {
               if (e.key === "Escape") {
                 e.preventDefault();
