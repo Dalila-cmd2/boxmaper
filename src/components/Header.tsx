@@ -5,6 +5,7 @@ import {
   Database,
   FileDown,
   FileSpreadsheet,
+  FileText,
   FolderKanban,
   FolderOutput,
   Info,
@@ -203,6 +204,7 @@ export function Header({
                 )
               }
             >
+              <FileText className="h-3.5 w-3.5" />
               {onBackToBuilding ? "Ficha PDF (proyecto completo)" : "Ficha PDF"}
             </button>
             {onBackToBuilding && rootState.activeSubProjectId ? (
@@ -215,6 +217,7 @@ export function Header({
                   }).catch(() => alert("No se pudo generar la ficha técnica PDF."))
                 }
               >
+                <FileText className="h-3.5 w-3.5" />
                 Ficha PDF (solo {subProjectName || "este subproyecto"})
               </button>
             ) : null}
