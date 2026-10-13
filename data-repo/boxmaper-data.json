@@ -1,8 +1,18 @@
 {
-  "dataVersion": 0,
+  "dataVersion": 1,
   "format": "boxmaper-manifest",
-  "message": "Repositorio inicial. Publica proyectos desde BoxMaper (Ayuda → Datos y sincronización).",
-  "projects": [],
-  "publishedAt": "2026-10-12T00:00:00.000Z",
+  "message": "Proyecto de demostración inicial (sustituir al publicar obra real)",
+  "projects": [
+    {
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Demostración BoxMaper",
+      "path": "proyectos/a1b2c3d4-e5f6-7890-abcd-ef1234567890.json",
+      "rev": 1,
+      "sha256": "4daea24e712a2b2d895f2ad4bad11c8c1e72cd5b37c93100cd9b995bf1d207f4",
+      "updatedAt": "2026-10-13T01:39:53.042Z"
+    }
+  ],
+  "publishedAt": "2026-10-13T01:39:53.041Z",
+  "publishedBy": "BoxMaper seed",
   "schema": 1
 }

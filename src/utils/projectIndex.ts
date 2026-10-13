@@ -2,41 +2,20 @@ import type { ProjectIndexEntry, ProjectState, ProjectStateV1 } from "../types/p
 
 const LEGACY_STORAGE_KEY = "loxone-boxmapper-v1";
 const FRESH_INSTALL_FLAG = "boxmaper_fresh_install_v1";
-const RECENT_FILES_KEY = "boxmaper-recent-files-v1";
-
 export const PROJECTS_INDEX_KEY = "boxmaper_projects_index";
 export const ACTIVE_PROJECT_KEY = "boxmaper_active_project_id";
 
-function wipeStoredProjects() {
-  const keys: string[] = [];
-  for (let i = 0; i < localStorage.length; i += 1) {
-    const key = localStorage.key(i);
-    if (!key) continue;
-    if (
-      key === PROJECTS_INDEX_KEY ||
-      key === ACTIVE_PROJECT_KEY ||
-      key === LEGACY_STORAGE_KEY ||
-      key === RECENT_FILES_KEY ||
-      key.startsWith("boxmaper_project_")
-    ) {
-      keys.push(key);
-    }
-  }
-  for (const key of keys) localStorage.removeItem(key);
-}
-
-/** Una sola vez: borra obras locales antiguas para un arranque limpio. */
-function applyFreshInstallOnce() {
+/** Marca que esta instalación ya pasó por el arranque inicial (sin borrar proyectos). */
+function markInstallReadyOnce() {
   try {
     if (localStorage.getItem(FRESH_INSTALL_FLAG) === "1") return;
-    wipeStoredProjects();
     localStorage.setItem(FRESH_INSTALL_FLAG, "1");
   } catch {
     /* ignore */
   }
 }
 
-applyFreshInstallOnce();
+markInstallReadyOnce();
 
 function projectBodyKey(id: string) {
   return `boxmaper_project_${id}`;

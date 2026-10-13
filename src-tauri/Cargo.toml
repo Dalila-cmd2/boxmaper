@@ -1,6 +1,6 @@
 [package]
 name = "app"
-version = "1.0.3"
+version = "1.0.4"
 description = "BoxMaper: mapeador de instalaciones de domótica Loxone"
 authors = ["BoxMaper"]
 license = "UNLICENSED"

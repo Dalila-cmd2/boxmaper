@@ -380,6 +380,11 @@ export function SyncModal() {
                 onChange={(e) => setCfg({ ...cfg, token: e.target.value.trim() })}
                 placeholder="github_pat_…"
               />
+              <span className="text-[11px] leading-snug text-slate-500">
+                La clave se guarda solo en este equipo (almacenamiento local del navegador / app). Usá un token con
+                permiso mínimo: lectura para recibir datos, escritura solo en el repositorio{" "}
+                <code className="text-slate-400">{cfg.owner}/{cfg.repo}</code>. Podés revocarlo en GitHub cuando quieras.
+              </span>
             </label>
             <div className="grid gap-2 sm:grid-cols-2">
               <label className="flex flex-col gap-1 text-xs text-slate-400">

@@ -2,7 +2,7 @@ import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import { isTauri } from "@tauri-apps/api/core";
 import type { DeviceModule, ProjectState, TerminalRow } from "../types/project";
-import { modulesInInstallOrder } from "./moduleInstallOrder";
+import { buildPdfSections, type TechnicalPdfOptions } from "./pdfSections";
 
 type Rgb = [number, number, number];
 
@@ -126,7 +126,7 @@ function drawFirstHeader(doc: jsPDF, state: ProjectState, generatedAt: string) {
 
   doc.setFontSize(7.5);
   doc.setTextColor(...INK_MUTED);
-  doc.text("BoxMaper v1.0  ·  Documentación para cliente y contrapuerta", MARGIN, 41);
+  doc.text("BoxMaper  ·  Documentación para cliente y contrapuerta", MARGIN, 41);
 
   const boxY = 7;
   const boxH = 26;
@@ -213,80 +213,9 @@ function stampFooters(doc: jsPDF, generatedAt: string) {
 
 /* ───────────── Organización por subproyecto ───────────── */
 
-export interface TechnicalPdfOptions {
-  /** Si se indica, la ficha incluye solo este subproyecto. */
-  onlySubProjectId?: string | null;
-}
+export type { TechnicalPdfOptions } from "./pdfSections";
 
-interface Section {
-  /** «Subproyecto», «Zona» o «Instalación». */
-  kind: string;
-  title: string;
-  modules: DeviceModule[];
-  miniserverIp?: string;
-  /** Elementos que no se pudieron asignar a ningún subproyecto/zona: se marcan para revisión. */
-  review?: boolean;
-}
-
-/**
- * Edificio → un apartado por subproyecto (planta, piso…).
- * Casa o piso → un apartado por «Estancia/Zona»; lo que no tiene zona se marca «REVISAR».
- * Si ningún aparato tiene zona, todo va en un único apartado «Instalación completa».
- */
-function buildSections(state: ProjectState, options: TechnicalPdfOptions): Section[] {
-  if (state.projectKind === "building") {
-    let subs = state.subProjects ?? [];
-    if (options.onlySubProjectId) subs = subs.filter((s) => s.id === options.onlySubProjectId);
-    return subs.map((sub) => ({
-      kind: "Subproyecto",
-      title: sub.name?.trim() || "Subproyecto sin nombre",
-      modules: modulesInInstallOrder(sub.modules ?? []),
-      miniserverIp: sub.miniserverIp,
-    }));
-  }
-
-  const modules = modulesInInstallOrder(state.modules ?? []);
-  if (modules.length === 0) return [];
-
-  const zones = new Map<string, DeviceModule[]>();
-  const unzoned: DeviceModule[] = [];
-  for (const mod of modules) {
-    const zone = (mod.zone ?? "").trim();
-    if (!zone) {
-      unzoned.push(mod);
-      continue;
-    }
-    zones.set(zone, [...(zones.get(zone) ?? []), mod]);
-  }
-
-  if (zones.size === 0) {
-    return [
-      {
-        kind: "Instalación",
-        title: "Instalación completa",
-        modules: unzoned,
-        miniserverIp: state.miniserverIp,
-      },
-    ];
-  }
-
-  const sections: Section[] = [...zones].map(([zone, mods]) => ({
-    kind: "Zona",
-    title: zone,
-    modules: mods,
-    miniserverIp: state.miniserverIp,
-  }));
-  if (unzoned.length > 0) {
-    sections.push({
-      kind: "Zona",
-      title: "Sin zona asignada",
-      modules: unzoned,
-      miniserverIp: state.miniserverIp,
-      review: true,
-    });
-  }
-  return sections;
-}
+type Section = ReturnType<typeof buildPdfSections>[number];
 
 function originLabel(mod: DeviceModule): string {
   const alias = (mod.alias ?? "").trim();
@@ -698,7 +627,7 @@ function buildPass(
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   // Página auxiliar muy alta (máximo de jsPDF): sirve para obtener las alturas reales.
   const scratch = new jsPDF({ orientation: "portrait", unit: "mm", format: [PAGE_W, 5000] });
-  const sections = buildSections(state, options);
+  const sections = buildPdfSections(state, options);
 
   drawFirstHeader(doc, state, generatedAt);
   const env: Env = { doc, scratch, state, page: 1, y: FIRST_START_Y, label: "Índice" };
@@ -735,7 +664,7 @@ function buildPass(
  */
 export function buildTechnicalPdf(state: ProjectState, options: TechnicalPdfOptions = {}) {
   const generatedAt = formatWhen(new Date());
-  const sectionCount = buildSections(state, options).length;
+  const sectionCount = buildPdfSections(state, options).length;
 
   // Pasada 1: averigua en qué página empieza cada apartado.
   // Pasada 2: imprime el índice con esos números (el resto del diseño no cambia).

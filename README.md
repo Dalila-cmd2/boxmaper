@@ -73,3 +73,7 @@ Por defecto la app apunta al repositorio público **`Dalila-cmd2/boxmaper-datos`
 Plantilla del repositorio de datos: carpeta `data-repo/` de este proyecto. Validación: `npm run validate:data`.
 
 Copias portables: **Archivo → Guardar** (`.boxmaper`).
+
+Documentación adicional en `docs/`: [guía de operación](docs/GUIA_OPERACION.md), [privacidad](docs/PRIVACIDAD.md), [checklist de pruebas](docs/TESTING.md).
+
+Licencia: [MIT](LICENSE).

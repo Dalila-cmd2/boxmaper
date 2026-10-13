@@ -1,0 +1,194 @@
+{
+  "format": "boxmaper-project",
+  "project": {
+    "activeSubProjectId": null,
+    "highlightedTerminalId": null,
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "installerCompany": "",
+    "installerTechnician": "",
+    "location": "Ejemplo — reemplazar con tu obra",
+    "modules": [],
+    "projectKind": "building",
+    "projectName": "Demostración BoxMaper",
+    "selectedModuleId": null,
+    "subProjects": [
+      {
+        "highlightedTerminalId": null,
+        "id": "ce4b0a30-7a69-4965-8f6b-3b0dce52fab8",
+        "miniserverIp": "192.168.1.10",
+        "modules": [
+          {
+            "alias": "Rele demo",
+            "catalogId": "ext-relay",
+            "category": "relay",
+            "id": "93a1a52e-90d2-439b-840c-12600669311a",
+            "macOrSerial": "",
+            "panelName": "Cuadro Principal",
+            "terminals": [
+              {
+                "borne": "Q1",
+                "cableRun": "",
+                "connectedElement": "Luz de ejemplo",
+                "id": "9f69a28f-9de7-42d1-a91a-f2a9af00cd21",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q2",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "a2f043d5-b708-444b-bc4b-72fabe74d919",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q3",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "2004946d-ccf0-43a9-8b36-66e6c52c00ab",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q4",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "3f65e5f1-74d8-4db6-b6d9-251f72eee2dd",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q5",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "aa756733-1227-4203-9a29-cee7e464cc4d",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q6",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "62805d6b-8bf7-4669-b949-b88cb3f11b16",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q7",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "dc2ac411-5ad5-4b7f-8189-af8362c73816",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q8",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "2f7193e7-7819-4976-aa50-473ec911602c",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q9",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "a040e0de-468a-4d22-9f6f-6dce6521f9c4",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q10",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "911382b5-cbdb-4194-9a08-446bcd18ce7d",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q11",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "19b8d743-f8a3-478a-84cf-aaaa74ecd4e2",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q12",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "1dade16d-7132-4e3e-bb91-2cd310d541d9",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q13",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "7a33d733-3917-4f3e-abd1-07c0f14bf894",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              },
+              {
+                "borne": "Q14",
+                "cableRun": "",
+                "connectedElement": "",
+                "id": "a51d9da7-9048-489d-ae88-3fe2b45d1bc0",
+                "loadType": "Salida relé",
+                "observaciones": "",
+                "panelTerminal": "",
+                "protection": "",
+                "room": ""
+              }
+            ],
+            "typeName": "Relay Extension",
+            "zone": "Salón"
+          }
+        ],
+        "name": "Planta ejemplo",
+        "selectedModuleId": null
+      }
+    ],
+    "version": 2
+  },
+  "schema": 1
+}
